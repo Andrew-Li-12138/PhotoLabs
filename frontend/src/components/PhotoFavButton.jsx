@@ -1,15 +1,22 @@
 import React, { useCallback, useState } from 'react';
-
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton() {
+function PhotoFavButton(props) {
+  const [selected, setSelect] = useState(false);
+  const [displayAlert, setDisplayAlert] = useState(false);
+
+ const handleFavButtonClick = () => {
+    setSelect(!selected);
+    setDisplayAlert(!displayAlert)
+  }
+
   return (
-    <div className="photo-list__fav-icon">
+    <div className="photo-list__fav-icon"  onClick={handleFavButtonClick}>
       <div className="photo-list__fav-icon-svg">
-        {/* Insert React */}
+        <FavIcon displayAlert={displayAlert} selected={selected}/>
       </div>
-    </div>
+    </div> 
   );
 }
 
