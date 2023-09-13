@@ -5,10 +5,18 @@ import '../styles/PhotoFavButton.scss';
 function PhotoFavButton(props) {
   const [selected, setSelect] = useState(false);
   const [displayAlert, setDisplayAlert] = useState(false);
+  const countClick = props.countClick;
 
- const handleFavButtonClick = () => {
+ const handleFavButtonClick = () => { 
     setSelect(!selected);
     setDisplayAlert(!displayAlert)
+    if (!selected) {
+      // If the icon was not selected, increment the count
+      countClick(1);
+    } else {
+      // If the icon was selected, decrement the count
+      countClick(-1);
+    }
   }
 
   return (
