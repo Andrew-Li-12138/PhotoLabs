@@ -5,10 +5,11 @@ import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
   const {id, location, urls, user} = props.photoListItem;
+  const countClick = props.countClick
 
   return (
     <article className="photo-list__item">
-    <PhotoFavButton />
+    <PhotoFavButton countClick={countClick}/>
     <img src={urls.regular} alt="Image" className="photo-list__image"/>
     <div className="photo-list__user-details">
     <img src={user.profile} alt="Profile" className="photo-list__user-profile"/>
@@ -18,7 +19,7 @@ const PhotoListItem = (props) => {
     </div>
     </div> 
   </article>
-  )
+  ) 
 
 };
 
