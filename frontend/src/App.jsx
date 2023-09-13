@@ -1,6 +1,9 @@
 import React from 'react';
+
 //import PhotoListItem from './components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
+//import TopicListItem from 'components/TopicListItem';
+import TopicList from 'components/TopicList';
 import './App.scss';
 
 //helpfer function for rendering <PhotolistItem /> multiple times
@@ -23,6 +26,7 @@ const App = (props) => {
   return (
     <div className="App">
       {/* {multiplePhotoListItems} */}
+      <TopicList />
       <PhotoList />
     </div>
   );
