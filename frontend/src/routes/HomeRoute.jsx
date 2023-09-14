@@ -4,7 +4,7 @@ import PhotoList from '../components/PhotoList';
 import '../styles/HomeRoute.scss'
 
 const HomeRoute = (props) => {
-  const {photos, topics, managePhotoClick} = props;
+  const {photos, topics, managePhotoClick, getPhotoItemDetails} = props;
   const [count, setCount] = useState(0);
   //state to pass down to FavBadge and PhotoLisrItem for fav count num
   const countClick = (increment) => {
@@ -16,7 +16,7 @@ const HomeRoute = (props) => {
   return (
     <div className="home-route">
     <TopNavigation topics={topics} count={count} isFavPhotoExist={isFavPhotoExist}/>
-    <PhotoList photos={photos} countClick={countClick} managePhotoClick={managePhotoClick}/>
+    <PhotoList photos={photos} countClick={countClick} managePhotoClick={managePhotoClick} getPhotoItemDetails={getPhotoItemDetails}/>
     </div>
   )
 }
