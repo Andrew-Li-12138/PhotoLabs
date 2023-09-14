@@ -10,7 +10,7 @@ const PhotoListItem = (props) => {
   return (
     <article className="photo-list__item">
     <PhotoFavButton countClick={countClick}/>
-    <img src={urls.regular} alt="Image" className="photo-list__image" onClick={()=>{managePhotoClick();getPhotoItemDetails(id, location, urls, user)}}/>
+    <img src={urls.regular} alt="Image" className="photo-list__image" onClick={()=>{managePhotoClick();getPhotoItemDetails(props.photoListItem)}}/>
     <div className="photo-list__user-details">
     <img src={user.profile} alt="Profile" className="photo-list__user-profile"/>
     <div>
@@ -21,6 +21,6 @@ const PhotoListItem = (props) => {
   </article>
   ) 
 
-};
+}; 
 
 export default PhotoListItem;
