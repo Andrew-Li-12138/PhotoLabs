@@ -13,9 +13,10 @@ const App = (props) => {
     setClicked(!clicked)
   }
   
+  //state for retreiving photo data from PhotoListItem and save as state to pass to PhotoDetailsModal
   const [photoItemDetails, setPhotoItemDetails] = useState(null); 
-  const getPhotoItemDetails = (id, location, urls, user) => {
-    const details = {id, location, urls, user}
+  const getPhotoItemDetails = (photo) => {
+    const details = photo
     setPhotoItemDetails(details);
   }
 
