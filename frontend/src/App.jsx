@@ -12,11 +12,17 @@ const App = (props) => {
   const managePhotoClick = () => {
     setClicked(!clicked)
   }
+  
+  const [photoItemDetails, setPhotoItemDetails] = useState(null); 
+  const getPhotoItemDetails = (id, location, urls, user) => {
+    const details = {id, location, urls, user}
+    setPhotoItemDetails(details);
+  }
 
   return (
     <div className="App">
-     <HomeRoute photos={photos} topics={topics} managePhotoClick={managePhotoClick}/>
-     {clicked && <PhotoDetailsModal manageCloseClick={managePhotoClick}/>}
+     <HomeRoute photos={photos} topics={topics} managePhotoClick={managePhotoClick} getPhotoItemDetails={getPhotoItemDetails}/>
+     {clicked && <PhotoDetailsModal managePhotoClick={managePhotoClick}  photoItemDetails={photoItemDetails}/>}
     </div>
   );
 };
