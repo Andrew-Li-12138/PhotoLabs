@@ -1,13 +1,12 @@
 import React from 'react';
 import PhotoFavButton from 'components/PhotoFavButton';
 import PhotoList from 'components/PhotoList';
-import photos from 'mocks/photos';
 import "../styles/PhotoListItem.scss";
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
-  const { managePhotoClick, photoItemDetails} = props;
+  const { managePhotoClick, photoItemDetails, countClick} = props;
   const {id, location, urls, user, similar_photos} = photoItemDetails;
   const similar_photos_array = Object.values(similar_photos);
   console.log(similar_photos)
@@ -18,9 +17,9 @@ const PhotoDetailsModal = (props) => {
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <article className="photo-list__item">
-      <PhotoFavButton/>
+      <PhotoFavButton countClick={countClick}/>
     <img src={urls.full} alt="Image" className="photo-details-modal__image"/>
-    <div className=".photo-details-modal__header">
+    <div className="photo-details-modal__header photo-details-modal__photographer-details">
     <img src={user.profile} alt="Profile" className="photo-list__user-profile"/>
     <div>
     <p className="photo-list__user-info">{user.name}</p>
@@ -29,7 +28,7 @@ const PhotoDetailsModal = (props) => {
     </div> 
   </article>
   <article className="photo-details-modal__images">
-   <PhotoList photos={similar_photos_array} />
+   <PhotoList photos={similar_photos_array} countClick={countClick}/>
    </article>
     </div>
   )
