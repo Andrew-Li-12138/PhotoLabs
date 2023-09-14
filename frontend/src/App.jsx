@@ -20,10 +20,17 @@ const App = (props) => {
     setPhotoItemDetails(details);
   }
 
+//state to pass down to FavBadge and PhotoLisrItem for fav count num
+  const [count, setCount] = useState(0);
+  const countClick = (increment) => {
+    setCount(count + increment);
+  }
+  const isFavPhotoExist = count > 0 ? true : false;
+
   return (
     <div className="App">
-     <HomeRoute photos={photos} topics={topics} managePhotoClick={managePhotoClick} getPhotoItemDetails={getPhotoItemDetails}/>
-     {clicked && <PhotoDetailsModal managePhotoClick={managePhotoClick}  photoItemDetails={photoItemDetails}/>}
+     <HomeRoute photos={photos} topics={topics} count={count} isFavPhotoExist={isFavPhotoExist} countClick={countClick} managePhotoClick={managePhotoClick} getPhotoItemDetails={getPhotoItemDetails}/>
+     {clicked && <PhotoDetailsModal managePhotoClick={managePhotoClick}  photoItemDetails={photoItemDetails} countClick={countClick}/>}
     </div>
   );
 };
