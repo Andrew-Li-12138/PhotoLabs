@@ -23,13 +23,13 @@ export function useApplicationData() {
         };
 
       case 'selectedOrNot':
-        const updatedSelectedPhotos = {
+        const toggleSelectedPhotos = {
           ...state.selectedPhotos,
           [action.photoId]: !state.selectedPhotos[action.photoId],
         };
         return {
           ...state,
-          selectedPhotos: updatedSelectedPhotos,
+          selectedPhotos: toggleSelectedPhotos,
         };
 
       case 'countClick':
@@ -54,7 +54,7 @@ export function useApplicationData() {
   };
 
   const selectedOrNot = (photoId) => {
-    dispatch({ type: 'selectedOrNot', photoId})
+    dispatch({ type: 'selectedOrNot', photoId: photoId})
   }
 
   const countClick = (increment) => {
