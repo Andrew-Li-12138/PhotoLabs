@@ -2,8 +2,8 @@ import React from 'react';
 
 const FavIcon = (props) => {
 
-  //deconstruct props from PhotoFavButton
   const {displayAlert, selected} = props
+
 
   return (
 
