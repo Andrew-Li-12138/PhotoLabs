@@ -5,6 +5,7 @@ export function useApplicationData() {
     clicked: false,
     photoItemDetails: null,
     count: 0,
+    selectedPhotos: {},
   };
 
   const reducer = (state, action) => {
@@ -19,6 +20,16 @@ export function useApplicationData() {
         return {
           ...state,
           clicked: !state.clicked,
+        };
+
+      case 'selectedOrNot':
+        const updatedSelectedPhotos = {
+          ...state.selectedPhotos,
+          [action.photoId]: !state.selectedPhotos[action.photoId],
+        };
+        return {
+          ...state,
+          selectedPhotos: updatedSelectedPhotos,
         };
 
       case 'countClick':
@@ -42,6 +53,10 @@ export function useApplicationData() {
     dispatch({ type: 'managePhotoClick' });
   };
 
+  const selectedOrNot = (photoId) => {
+    dispatch({ type: 'selectedOrNot', photoId})
+  }
+
   const countClick = (increment) => {
     dispatch({ type: 'countClick', numToAdd: increment });
   };
@@ -49,6 +64,7 @@ export function useApplicationData() {
   return {
     state,
     managePhotoClick,
+    selectedOrNot,
     getPhotoItemDetails,
     countClick,
   };
