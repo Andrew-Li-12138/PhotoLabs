@@ -5,12 +5,12 @@ import "../styles/PhotoList.scss";
 
 const PhotoList = (props) => {
   const sampleDataForPhotoList = props.photos 
-  const {countClick, managePhotoClick, getPhotoItemDetails} = props
+  const {countClick, managePhotoClick, getPhotoItemDetails, selected, selectedOrNot} = props
 
   return (
     <ul className="photo-list">
     {sampleDataForPhotoList.map((photoListItem)=>{  
-     return <PhotoListItem key={photoListItem.id} photoListItem={photoListItem} countClick={countClick} managePhotoClick={managePhotoClick} 
+     return <PhotoListItem key={photoListItem.id} selected={selected[photoListItem.id]||false} selectedOrNot={() => selectedOrNot(photoListItem.id)} photoListItem={photoListItem} countClick={countClick} managePhotoClick={managePhotoClick} 
      getPhotoItemDetails={getPhotoItemDetails}/>
     })}
     </ul>
