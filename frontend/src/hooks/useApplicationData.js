@@ -1,34 +1,55 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 export function useApplicationData() {
-    
-  const [state, setState]= useState({
-    clicked:false,
+  const initialState = {
+    clicked: false,
     photoItemDetails: null,
     count: 0,
-  })
+  };
 
-   
-    //state for retreiving photo data from PhotoListItem and save as state to pass to PhotoDetailsModal
-    const getPhotoItemDetails = (photo) => {
-      setState((prevState) => ({...prevState, photoItemDetails: photo}));
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case 'getPhotoItemDetails':
+        return {
+          ...state,
+          photoItemDetails: action.photoData, 
+        };
+
+      case 'managePhotoClick':
+        return {
+          ...state,
+          clicked: !state.clicked,
+        };
+
+      case 'countClick':
+        return {
+          ...state,
+          count: state.count + action.numToAdd, 
+        };
+
+      default:
+        return state;
     }
+  };
 
-     //state for toggling showing and closing <PhotoDetailsModal /> component 
-     const managePhotoClick = () => {
-      setState((prevState) => ({ ...prevState, clicked: !prevState.clicked }));
-    };
-    
-  
-  //state to pass down to FavBadge and PhotoLisrItem for fav count num
-    const countClick = (increment) => {
-      setState({...state, count: state.count + increment});
-    }
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-    return {
+  const getPhotoItemDetails = (photo) => {
+    dispatch({ type: 'getPhotoItemDetails', photoData: photo });
+  };
+
+  const managePhotoClick = () => {
+    dispatch({ type: 'managePhotoClick' });
+  };
+
+  const countClick = (increment) => {
+    dispatch({ type: 'countClick', numToAdd: increment });
+  };
+
+  return {
     state,
     managePhotoClick,
     getPhotoItemDetails,
     countClick,
-    };
+  };
 }
