@@ -5,13 +5,6 @@ import '../styles/HomeRoute.scss'
 
 const HomeRoute = (props) => {
   const {photos, topics, managePhotoClick, getPhotoItemDetails, count, countClick, isFavPhotoExist} = props;
-  // const [count, setCount] = useState(0);
-  // //state to pass down to FavBadge and PhotoLisrItem for fav count num
-  // const countClick = (increment) => {
-  //   setCount(count + increment);
-  // }
-  // const isFavPhotoExist = count > 0 ? true : false;
-
 
   return (
     <div className="home-route">
