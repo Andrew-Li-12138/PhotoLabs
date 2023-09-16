@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 
 export function useApplicationData() {
   const initialState = {
@@ -6,7 +6,19 @@ export function useApplicationData() {
     photoItemDetails: null,
     count: 0,
     selectedPhotos: {},
+    photoData: [],
+    topicData: [],
+    topicId: []
   };
+
+  useEffect(() => {
+    fetchAndPassPhotosData();//to state.photoData
+    fetchAndpassTopicsData();//to state.topicData
+  }, []);
+
+  useEffect(()=> {
+    fetchAndPassPhotosForTopic(); // to state.photoData
+  },[state.topicId]) //updated by state.topicID
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -38,12 +50,70 @@ export function useApplicationData() {
           count: state.count + action.numToAdd, 
         };
 
+      case 'passPhotosData':
+        return {
+          ...state,
+          photoData: action.photoData,
+        };
+
+      case 'passTopicsData':
+        return {
+          ...state,
+          topicData: action.topicData,
+        };
+  
+
       default:
         return state;
     }
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const fetchAndPassPhotosData = () => {
+    fetch('http://localhost:8001/api/photos')
+      .then((response) => {
+        if (!response.ok) {
+          console.log(`HTTP Error fetching photos! ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((photos) => dispatch({ type: 'passPhotosData', photoData: photos }))
+      .catch((error) => {
+        console.error('Error fetching photos data:', error);
+      });
+  };
+
+  const fetchAndpassTopicsData = () => {
+    fetch('http://localhost:8001/api/topics')
+    .then((response) => {
+      if (!response.ok) {
+        console.log(`HTTP Error fetching topics! ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((topics) => dispatch({ type: 'passTopicsData', topicData: topics }))
+    .catch((error) => {
+      console.error('Error fetching topics data:', error);
+    });
+};
+   
+   const fetchAndPassPhotosForTopic =() => {
+     const {topicId} = state
+     if(topicId) {
+      fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+    .then((response) => {
+      if (!response.ok) {
+        console.log(`HTTP Error fetching photos for topic! ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((photos) => dispatch({ type: 'passPhotosData', photoData: photos }))
+    .catch((error) => {
+      console.error('Error fetching photos for topic:', error);
+    });
+     }
+   }
 
   const getPhotoItemDetails = (photo) => {
     dispatch({ type: 'getPhotoItemDetails', photoData: photo });
