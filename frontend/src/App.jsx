@@ -13,14 +13,18 @@ const App = (props) => {
     selectedOrNot,
     getPhotoItemDetails,
     countClick,
+    getTopicId
     } = useApplicationData()
 
   const isFavPhotoExist = state.count > 0 ? true : false;
  
   return (
     <div className="App">
-     <HomeRoute photos={state.photoData} topics={state.topicData} count={state.count} selected={state.selectedPhotos} selectedOrNot={selectedOrNot}
-     isFavPhotoExist={isFavPhotoExist} countClick={countClick} managePhotoClick={managePhotoClick} getPhotoItemDetails={getPhotoItemDetails}/>
+     <HomeRoute photos={state.photoData} topics={state.topicData} getTopicId={getTopicId}
+     count={state.count} selected={state.selectedPhotos} selectedOrNot={selectedOrNot}
+     isFavPhotoExist={isFavPhotoExist} countClick={countClick} managePhotoClick={managePhotoClick} 
+     getPhotoItemDetails={getPhotoItemDetails}/>
+     
      {state.clicked && <PhotoDetailsModal selected={state.selectedPhotos} selectedOrNot={selectedOrNot} managePhotoClick={managePhotoClick} 
      photoItemDetails={state.photoItemDetails} countClick={countClick}/>}
       {console.log(state.selectedPhotos)}
