@@ -1,7 +1,6 @@
 import React from "react";
-
 import "../styles/TopicListItem.scss";
-import HomeRoute from "routes/HomeRoute";
+
 
 const TopicListItem = (props) => {
   const { id, slug, title } = props.topicListItem
