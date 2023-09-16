@@ -1,5 +1,5 @@
 # react-photolabs
-The PhotoLabs project for the Web Development React course programming.
+This is a React-based web application for browsing and interacting with a collection of photos. It allows users to select topics, view photos, and see detailed information about selected photos in a modal. Users can mark photos as favorites and count their selections. The project fetches data from a local backend API and employs React hooks for state management and user interactions, providing a user-friendly photo browsing experience.
 
 # Photolabs
 
@@ -22,3 +22,15 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+## Dependencies
+- React
+- React DOM
+- React Scripts
+- Web Vitals
+- @testing-library/jest-dom
+- @testing-library/react
+- @testing-library/user-event
+
+### Development Dependencies
+- Sass
+
