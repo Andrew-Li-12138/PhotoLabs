@@ -8,7 +8,7 @@ export function useApplicationData() {
     selectedPhotos: {},
     photoData: [],
     topicData: [],
-    topicId: []
+    topicId: null
   };
 
   useEffect(() => {
@@ -16,9 +16,6 @@ export function useApplicationData() {
     fetchAndpassTopicsData();//to state.topicData
   }, []);
 
-  useEffect(()=> {
-    fetchAndPassPhotosForTopic(); // to state.photoData
-  },[state.topicId]) //updated by state.topicID
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -61,7 +58,12 @@ export function useApplicationData() {
           ...state,
           topicData: action.topicData,
         };
-  
+      
+      case 'passTopicId':
+        return {
+          ...state,
+          topicId: action.topicId,
+        }
 
       default:
         return state;
@@ -69,6 +71,13 @@ export function useApplicationData() {
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+
+  useEffect(() => {
+   
+    fetchAndPassPhotosForTopic(); // Fetch photos for the selected topic
+  
+}, [state.topicId]); // Updated by state.topicID
 
   const fetchAndPassPhotosData = () => {
     fetch('http://localhost:8001/api/photos')
@@ -131,11 +140,16 @@ export function useApplicationData() {
     dispatch({ type: 'countClick', numToAdd: increment });
   };
 
+  const getTopicId = (topicId) => {
+    dispatch({type:'passTopicId', topicId: topicId})
+  }
+
   return {
     state,
     managePhotoClick,
     selectedOrNot,
     getPhotoItemDetails,
     countClick,
+    getTopicId
   };
 }
