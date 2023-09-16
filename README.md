@@ -3,7 +3,7 @@ This is a React-based web application for browsing and interacting with a collec
 
 ## Screenshots
 
-### App displays picture and has functional like button, which accumulates likes number
+### Photolabs can displays pictures and has functional like buttons, which can also accumulates like number
 !["home"](https://github.com/Andrew-Li-12138/PhotoLabs/blob/main/docs/home.png)
 
 ### Clients can select picture category to view pictures in with same theme
