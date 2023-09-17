@@ -15,17 +15,16 @@ export function useApplicationData() {
 
   const [state, dispatch] = useReducer(reducer, initialState);
  
+  //fetch photos and topics data from API call and update state.photoData & state.photoData
   useEffect(() => {
-    fetchAndPassPhotosData();//to state.photoData
-    fetchAndpassTopicsData();//to state.topicData
+    fetchAndPassPhotosData();//to updtae state.photoData
+    fetchAndpassTopicsData();//to update state.photoData
   }, []);
 
-
+//fetch photos for certain topics when state.topicId is updated
   useEffect(() => {
-   
-    fetchAndPassPhotosForTopic(); // Fetch photos for the selected topic
-  
-}, [state.topicId]); // Updated by state.topicID
+    fetchAndPassPhotosForTopic(); 
+}, [state.topicId]); 
 
   const fetchAndPassPhotosData = () => {
     fetch('/api/photos')
@@ -71,23 +70,28 @@ export function useApplicationData() {
     });
      }
    }
-
+  
+   //called in PhotoListItem component at img's onClick even. Get data about specific picture
   const getPhotoItemDetails = (photo) => {
     dispatch({ type: 'getPhotoItemDetails', photoData: photo });
   };
-
+  
+  //toggle boolean value of state.clicked 
   const managePhotoClick = () => {
     dispatch({ type: 'managePhotoClick' });
   };
-
+  
+  //toggle state.selectedPhotos and assign boolean value to photoId to determine if a specific photo is selected
   const selectedOrNot = (photoId) => {
     dispatch({ type: 'selectedOrNot', photoId: photoId})
   }
-
+ 
+  //change state.count to help display number of favs at navigation bar
   const countClick = (increment) => {
     dispatch({ type: 'countClick', numToAdd: increment });
   };
-
+ 
+  //called at onClick in TopicListItem component and pass topicId to state.topicId, which is used in fetchAndPassPhotosForTopic 
   const getTopicId = (topicId) => {
     dispatch({type:'passTopicId', topicId: topicId})
   }
