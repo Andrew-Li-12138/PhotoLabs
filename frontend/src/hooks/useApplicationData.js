@@ -76,12 +76,12 @@ export function useApplicationData() {
     dispatch({ type: 'getPhotoItemDetails', photoData: photo });
   };
   
-  //toggle boolean value of state.clicked 
+  //toggle boolean value of state.clicked which is called on PhotoListItem img onClick to determines if PhotoDetailModel can be rendered or not 
   const managePhotoClick = () => {
     dispatch({ type: 'managePhotoClick' });
   };
   
-  //toggle state.selectedPhotos and assign boolean value to photoId to determine if a specific photo is selected
+  //toggle state.selectedPhotos and assign boolean value to photoId. Called in PhotoFavButton onClick. Use photoId to help select individual FavButton
   const selectedOrNot = (photoId) => {
     dispatch({ type: 'selectedOrNot', photoId: photoId})
   }
