@@ -80,7 +80,7 @@ export function useApplicationData() {
 }, [state.topicId]); // Updated by state.topicID
 
   const fetchAndPassPhotosData = () => {
-    fetch('http://localhost:8001/api/photos')
+    fetch('/api/photos')
       .then((response) => {
         if (!response.ok) {
           console.log(`HTTP Error fetching photos! ${response.status}`);
@@ -94,7 +94,7 @@ export function useApplicationData() {
   };
 
   const fetchAndpassTopicsData = () => {
-    fetch('http://localhost:8001/api/topics')
+    fetch('/api/topics')
     .then((response) => {
       if (!response.ok) {
         console.log(`HTTP Error fetching topics! ${response.status}`);
@@ -110,7 +110,7 @@ export function useApplicationData() {
    const fetchAndPassPhotosForTopic =() => {
      const {topicId} = state
      if(topicId) {
-      fetch(`http://localhost:8001/api/topics/photos/${topicId}`)
+      fetch(`api/topics/photos/${topicId}`)
     .then((response) => {
       if (!response.ok) {
         console.log(`HTTP Error fetching photos for topic! ${response.status}`);
