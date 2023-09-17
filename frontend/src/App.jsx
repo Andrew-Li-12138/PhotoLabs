@@ -27,7 +27,6 @@ const App = (props) => {
      
      {state.clicked && <PhotoDetailsModal selected={state.selectedPhotos} selectedOrNot={selectedOrNot} managePhotoClick={managePhotoClick} 
      photoItemDetails={state.photoItemDetails} countClick={countClick}/>}
-      {console.log(state.selectedPhotos)}
     </div>
   );
 };
