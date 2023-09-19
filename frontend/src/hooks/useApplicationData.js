@@ -23,7 +23,7 @@ export function useApplicationData() {
 
 //fetch photos for certain topics when state.topicId is updated
   useEffect(() => {
-    fetchAndPassPhotosForTopic(); 
+    fetchAndPassPhotosForTopic();  
 }, [state.topicId]); 
 
   const fetchAndPassPhotosData = () => {
@@ -69,7 +69,7 @@ export function useApplicationData() {
       console.error('Error fetching photos for topic:', error);
     });
      }
-   }
+   } 
   
    //called in PhotoListItem component at img's onClick even. Get data about specific picture
   const getPhotoItemDetails = (photo) => {
@@ -85,7 +85,10 @@ export function useApplicationData() {
   const selectedOrNot = (photoId) => {
     dispatch({ type: 'selectedOrNot', photoId: photoId})
   }
- 
+  
+  const displaySeletcedPhotos = () => {
+    dispatch({type: 'displaySelectedPhotos'})
+  }
   //change state.count to help display number of favs at navigation bar
   const countClick = (increment) => {
     dispatch({ type: 'countClick', numToAdd: increment });
@@ -102,6 +105,7 @@ export function useApplicationData() {
     selectedOrNot,
     getPhotoItemDetails,
     countClick,
-    getTopicId
+    getTopicId,
+    displaySeletcedPhotos
   };
 }
