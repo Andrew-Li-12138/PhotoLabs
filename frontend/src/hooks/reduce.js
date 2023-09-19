@@ -45,11 +45,31 @@ const reducer = (state, action) => {
       return {
         ...state,
         topicId: action.topicId,
-      }
+      };
+
+    case 'displaySelectedPhotos':
+      const selectedPhotoId = Object.keys(state.selectedPhotos)
+      const getSelectedPhotosDetails = (photoIds, photoData) => {
+        const photoIdsNum = photoIds.map((str)=>parseInt(str, 10))
+        return photoData.filter((photoItem) => {
+          return photoIdsNum.includes(photoItem.id);
+        });
+      };
+      const selectedPhotosDetails = getSelectedPhotosDetails(selectedPhotoId, state.photoData)
+      console.log(selectedPhotoId)
+      console.log(state.photoData)
+      console.log(selectedPhotosDetails)
+
+      return {
+        ...state,
+        photoData: selectedPhotosDetails,
+      };
 
     default:
       return state;
   }
+  
+        
 };
 
 export default reducer
