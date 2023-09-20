@@ -4,7 +4,7 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
 
-  const {countClick, selected, selectedOrNot, id} = props;
+  const {countClick, selected, selectedOrNot, id, darkMode} = props;
 
   const handleFavButtonClick = () => { 
     selectedOrNot(id)
@@ -17,8 +17,8 @@ function PhotoFavButton(props) {
     }
   }
   return (
-    <div className="photo-list__fav-icon" onClick={handleFavButtonClick}>
-      <div className="photo-list__fav-icon-svg">
+    <div className={`photo-list__fav-icon`} onClick={handleFavButtonClick}>
+      <div className={`photo-list__fav-icon-svg ${darkMode ? 'App-Dark' : ''}`} >
         <FavIcon selected={selected}/>
       </div>
     </div> 
