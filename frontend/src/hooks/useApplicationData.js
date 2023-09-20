@@ -114,5 +114,6 @@ export function useApplicationData() {
     getTopicId,
     displaySeletcedPhotos,
     toggleDarkMode,
+    fetchAndPassPhotosData
   };
 }
