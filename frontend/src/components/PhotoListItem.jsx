@@ -6,7 +6,7 @@ import "../styles/PhotoListItem.scss";
 const PhotoListItem = (props) => {
 
   const {id, location, urls, user} = props.photoListItem;
-  const {countClick, managePhotoClick, getPhotoItemDetails, selected, selectedOrNot} = props;
+  const {countClick, managePhotoClick, getPhotoItemDetails, selected, selectedOrNot, darkMode} = props;
 
   const handleImgClick = ()=> {
     getPhotoItemDetails(props.photoListItem);
@@ -16,7 +16,7 @@ const PhotoListItem = (props) => {
 
   return (
     <article className="photo-list__item">
-    <PhotoFavButton countClick={countClick} selected={selected} selectedOrNot={selectedOrNot} id={id}/>
+    <PhotoFavButton countClick={countClick} selected={selected} selectedOrNot={selectedOrNot} id={id} darkMode={darkMode}/>
     <img src={urls.regular} alt="Image" className="photo-list__image" onClick={handleImgClick}/>
     <div className="photo-list__user-details">
     <img src={user.profile} alt="Profile" className="photo-list__user-profile"/>
