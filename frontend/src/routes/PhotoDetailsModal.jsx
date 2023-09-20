@@ -6,13 +6,13 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 
 const PhotoDetailsModal = (props) => {
-  const { managePhotoClick, photoItemDetails, countClick, selected, selectedOrNot} = props;
+  const { managePhotoClick, photoItemDetails, countClick, selected, selectedOrNot, darkMode} = props;
   const {id, location, urls, user, similar_photos} = photoItemDetails;
   const similar_photos_array = Object.values(similar_photos);
 
   return (
-    <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={ managePhotoClick }>
+    <div className={`photo-details-modal ${darkMode ? 'App-Dark' : ''}`}>
+      <button className={`photo-details-modal__close-button ${darkMode ? 'App-Dark' : ''}`} onClick={ managePhotoClick }>
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <article className="photo-list__item">
