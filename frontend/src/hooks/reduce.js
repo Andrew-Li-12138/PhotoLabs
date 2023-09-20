@@ -56,14 +56,17 @@ const reducer = (state, action) => {
         });
       };
       const selectedPhotosDetails = getSelectedPhotosDetails(selectedPhotoId, state.photoData)
-      console.log(selectedPhotoId)
-      console.log(state.photoData)
-      console.log(selectedPhotosDetails)
 
       return {
         ...state,
         photoData: selectedPhotosDetails,
       };
+
+      case 'toggleDarkMode':
+        return {
+        ...state,
+        darkMode: !state.darkMode,
+        }
 
     default:
       return state;
