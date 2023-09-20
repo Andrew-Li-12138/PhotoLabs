@@ -1,5 +1,6 @@
 .top-nav-bar {
   display: flex;
+  margin-left: -10px;
   flex-direction: row;
   justify-content: space-between;
   padding: 8px;
@@ -20,7 +21,7 @@
 }
 
 .top-nav-bar__fav {
-    margin-left: - 190px;
+    margin-left: - 240px;
     line-height: 24px;
     font-size: 18px;
     text-decoration: none;
