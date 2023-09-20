@@ -15,6 +15,7 @@ const App = (props) => {
     getTopicId,
     displaySeletcedPhotos,
     toggleDarkMode,
+    fetchAndPassPhotosData
     } = useApplicationData()
 
   const isFavPhotoExist = state.count > 0 ? true : false;
@@ -23,7 +24,7 @@ const App = (props) => {
     <div className={`App ${state.darkMode ? 'App-Dark' : ''}`}>
       <button className="App-Dark_Button" onClick={()=>{toggleDarkMode()}}>DarkMode</button>
      <HomeRoute photos={state.photoData} topics={state.topicData} getTopicId={getTopicId}
-     count={state.count} selected={state.selectedPhotos} selectedOrNot={selectedOrNot}
+     count={state.count} selected={state.selectedPhotos} selectedOrNot={selectedOrNot} fetchAndPassPhotosData={fetchAndPassPhotosData}
      isFavPhotoExist={isFavPhotoExist} countClick={countClick} managePhotoClick={managePhotoClick} 
      getPhotoItemDetails={getPhotoItemDetails} displaySeletcedPhotos={displaySeletcedPhotos} darkMode={state.darkMode}/>
      
