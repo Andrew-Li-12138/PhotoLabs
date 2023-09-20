@@ -10,7 +10,8 @@ export function useApplicationData() {
     selectedPhotos: {},
     photoData: [],
     topicData: [],
-    topicId: null
+    topicId: null,
+    darkMode: false
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -86,6 +87,7 @@ export function useApplicationData() {
     dispatch({ type: 'selectedOrNot', photoId: photoId})
   }
   
+  //get photoId for selected(faved) photos and change state.photoData to only selected photo 
   const displaySeletcedPhotos = () => {
     dispatch({type: 'displaySelectedPhotos'})
   }
@@ -99,6 +101,10 @@ export function useApplicationData() {
     dispatch({type:'passTopicId', topicId: topicId})
   }
 
+  const toggleDarkMode = () => {
+    dispatch({type:'toggleDarkMode'})
+  }
+
   return {
     state,
     managePhotoClick,
@@ -106,6 +112,7 @@ export function useApplicationData() {
     getPhotoItemDetails,
     countClick,
     getTopicId,
-    displaySeletcedPhotos
+    displaySeletcedPhotos,
+    toggleDarkMode,
   };
 }
